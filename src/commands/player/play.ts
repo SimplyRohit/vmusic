@@ -1,5 +1,5 @@
 import { GuildMember } from 'discord.js'
-import { player } from '../lib/player'
+import { player } from '../../lib/player'
 
 export const play = async ({ interaction, queue }) => {
     const { options, member } = interaction

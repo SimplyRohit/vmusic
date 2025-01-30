@@ -5,19 +5,18 @@ import './events/playerEvents'
 import { GuildMember, REST, Routes } from 'discord.js'
 import { commands } from './command'
 import { DefaultExtractors } from '@discord-player/extractor'
-import { play } from './commands/play'
-import { pause } from './commands/pause'
-import { skip } from './commands/skip'
-import { nowplaying } from './commands/nowplaying'
-import { mainqueue } from './commands/queue'
-import { shuffle } from './commands/shuffle'
-import { stop } from './commands/stop'
-import { purge } from './commands/purge'
-import { handleKick, kick } from './commands/handleKick'
-import { handleBan } from './commands/handleBan'
-import { handleMute } from './commands/handleMute'
-import { handleWarn } from './commands/handleWarn'
-import { handlePurge } from './commands/handlePurge'
+import { play } from './commands/player/play'
+import { pause } from './commands/player/pause'
+import { skip } from './commands/player/skip'
+import { nowplaying } from './commands/player/nowplaying'
+import { mainqueue } from './commands/player/queue'
+import { shuffle } from './commands/player/shuffle'
+import { stop } from './commands/player/stop'
+import { handleKick } from './commands/admin/handleKick'
+import { handleBan } from './commands/admin/handleBan'
+import { handleMute } from './commands/admin/handleMute'
+import { handleWarn } from './commands/admin/handleWarn'
+import { handlePurge } from './commands/admin/handlePurge'
 
 const rest = new REST({ version: '10' }).setToken(process.env.CLIENT_TOKEN!)
 
@@ -47,40 +46,40 @@ client.on('interactionCreate', async (interaction) => {
         switch (interaction.commandName) {
             case 'play':
                 play({ interaction, queue })
-
+                break
             case 'pause':
                 pause({ interaction, queue })
-
+                break
             case 'skip':
                 skip({ interaction, queue })
-
+                break
             case 'nowplaying':
                 nowplaying({ interaction, queue })
-
+                break
             case 'queue':
                 mainqueue({ interaction, queue })
-
+                break
             case 'shuffle':
                 shuffle({ interaction, queue })
-
+                break
             case 'stop':
                 stop({ interaction, queue })
-
-            case 'kick':
-                await handleKick(interaction)
                 break
-            case 'ban':
-                await handleBan(interaction)
-                break
-            case 'mute':
-                await handleMute(interaction)
-                break
-            case 'warn':
-                await handleWarn(interaction)
-                break
-            case 'purge':
-                await handlePurge(interaction)
-                break
+            // case 'kick':
+            //     await handleKick(interaction)
+            //     break
+            // case 'ban':
+            //     await handleBan(interaction)
+            //     break
+            // case 'mute':
+            //     await handleMute(interaction)
+            //     break
+            // case 'warn':
+            //     await handleWarn(interaction)
+            //     break
+            // case 'purge':
+            //     await handlePurge(interaction)
+            //     break
 
             default:
                 return interaction.reply('❌ Unknown command!')

@@ -1,3 +1,4 @@
+// lib/player.ts
 import { Player } from 'discord-player'
 import { client } from './client'
 
